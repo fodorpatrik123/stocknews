@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticker Scraper - Manage Tickers</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Manage Tickers</h2>
+        <form action="/add_ticker" method="post" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="new_ticker" class="sr-only">Add meg az új tickert:</label>
+                <input type="text" name="new_ticker" id="new_ticker" class="form-control" placeholder="Add meg az új tickert" required>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Add Ticker</button>
+        </form>
+        <form action="/delete_ticker" method="post">
+            <div class="form-group">
+                <label for="delete_ticker">Válaszd ki a törlendő tickert:</label>
+                <select name="delete_ticker" id="delete_ticker" class="form-control" required>
+                    {% for ticker in tickers %}
+                        <option value="{{ ticker }}">{{ ticker }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Delete Ticker</button>
+        </form>
+        <a href="/" class="btn btn-secondary"><i class="fas fa-home"></i> Back to Home</a>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+</body>
+</html>
